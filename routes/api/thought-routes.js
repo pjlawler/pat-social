@@ -17,12 +17,11 @@ router
 .route('/:userId')
 .post(createThought)
 
-// api/users/:id
-// router
-// .route('/:id')
-// .get(getThought)
-// .put(updateThought)
-// .delete(deleteThought)
+router
+.route('/:thoughtId')
+.get(getThought)
+.put(updateThought)
+.delete(deleteThought)
 
 
 module.exports = router;

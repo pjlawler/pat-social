@@ -18,10 +18,8 @@ ThoughtSchema = new Schema({
     updatedAt: {
         type: Date,
         default: Date.now,
-        immutable: true,
         get: updatedAtVal => format_date(updatedAtVal)
     },
-    
     timeSince: {
         type: Date,
         default: Date.now,
@@ -29,13 +27,15 @@ ThoughtSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
-    reactions: [{ReactionSchema}]
+    reactions: [ReactionSchema]
 },
 {
 toJSON: {
-    getters: true
+    getters: true,
+    virtuals: true
 },
 id: false
 });

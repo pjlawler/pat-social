@@ -72,7 +72,11 @@ function format_date(date) {
     const year = date.getFullYear() || 2022;
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    return `${month}/${day}/${year}`
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const hour_string = hours < 10 ? `0${hours}`: `${hours}`
+    const min_string = minutes < 10 ? `0${minutes}`:`${minutes}`
+    return `${month}/${day}/${year} ${hour_string}:${min_string}`
 }
 
 function date_noYear(date) {

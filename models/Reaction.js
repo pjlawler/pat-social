@@ -1,4 +1,5 @@
 const { Schema, Types } = require('mongoose');
+const User = require('../models/User');
 const { timeSince, format_date } = require('../utils/helpers')
 
 ReactionSchema = new Schema({
@@ -11,21 +12,10 @@ ReactionSchema = new Schema({
         required: true,
         maxlength: 280,
     },
-    user: {
-        type: Schema.Types.ObjectId,
-        required: true
-    },
     createdAt: {
         type: Date,
         default: Date.now,
-        immutable: true,
         get: createdAtVal => format_date(createdAtVal)
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now,
-        immutable: true,
-        get: updatedAtVal => format_date(updatedAtVal)
     },
     timeSince: {
         type: Date,
@@ -34,13 +24,24 @@ ReactionSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
 },
 {
-toJSON: {
-    getters: true
-},
-id: false
+  toJSON: {
+    getters: true,
+    virtuals: true
+  }, id: false
 });
+
+ReactionSchema.virtual('username').get(async function() {
+    let username = await User.findById(this.user)
+    .then(dbUserData => {
+        return dbUserData.username;
+    })
+    console.log(username);
+    return username || 'no name found'
+});
+
 module.exports = ReactionSchema;
