@@ -28,7 +28,8 @@ const UserSchema = new Schema({
   },
   {
     toJSON: {
-      virtuals: true
+      virtuals: true,
+      statics: true
     },
     id: false
   });
@@ -37,6 +38,11 @@ const UserSchema = new Schema({
 UserSchema.virtual('friendCount').get(function() {
   return this.friends.length;
 });
+
+// UserSchema.statics.getUserName = async function(userId) {
+//   console.log(userId)
+//   return await User.findById(userId).then(dbUserData => dbUserData.username)
+// };
 
 const User = model('User', UserSchema);
 
