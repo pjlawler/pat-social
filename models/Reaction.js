@@ -31,17 +31,14 @@ ReactionSchema = new Schema({
 {
   toJSON: {
     getters: true,
-    virtuals: true
+    statics: true
   }, id: false
 });
 
-ReactionSchema.virtual('username').get(async function() {
-    let username = await User.findById(this.user)
-    .then(dbUserData => {
-        return dbUserData.username;
-    })
-    console.log(username);
-    return username || 'no name found'
+ReactionSchema.virtual('username') {
+    User.findById(this.user, function(err, username) {
+        return username
+    });
 });
 
 module.exports = ReactionSchema;

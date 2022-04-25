@@ -19,9 +19,13 @@ const thoughtController = {
   getAllThoughts(req, res) {
     Thought.find({})
     .select(['-__v'])
-    .populate({path: 'user', select: ['-thoughts', '-__v', '-email']})
+    .populate({
+      path: 'user', 
+      select: ['-thoughts', '-__v', '-email']
+    })
     .then(dbThoughtData => {
-      res.json(dbThoughtData)})
+      res.json(dbThoughtData)     
+    })
     .catch(err => {
       console.log(err);
       res.sendStatus(500);
@@ -73,6 +77,7 @@ const thoughtController = {
     })
   }
 }
+
 
 module.exports = thoughtController;
   
