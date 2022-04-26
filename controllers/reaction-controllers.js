@@ -1,7 +1,7 @@
 const Thought = require('../models/Thought');
 
 const reactionController = {
-    addReaction({ params, body }, res) {
+    addReaction({ params, body }, res) {       
 
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },

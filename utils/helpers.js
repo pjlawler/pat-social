@@ -45,29 +45,6 @@ function timeSince(date) {
     }   
 };
 
-function commentCount(comments) {
-    
-    switch(true) {
-        case comments.length === 0:
-            return 'No comments yet';
-        case comments.length === 1:
-            return '1 comment';
-        default:
-            return `${comments.length} comments`
-    }
-};
-
-function postCount(posts) {
-    switch(true) {
-        case posts.length === 0:
-            return 'no posts';
-        case posts.length === 1:
-            return '1 post'
-        default:
-            return `${posts.length} posts`
-    }
-}
-
 function format_date(date) {
     const year = date.getFullYear() || 2022;
     const month = date.getMonth() + 1;
@@ -79,11 +56,4 @@ function format_date(date) {
     return `${month}/${day}/${year} ${hour_string}:${min_string}`
 }
 
-function date_noYear(date) {
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    return `${month}/${day}`
-}
-
-
-module.exports = {timeSince, commentCount, format_date, postCount }
+module.exports = {timeSince, format_date }
