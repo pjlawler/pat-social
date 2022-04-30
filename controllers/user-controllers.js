@@ -30,6 +30,10 @@ const userController = {
     // gest a specific user based on the passed in userId in the params
     User.findOne({ _id: params.id })
     .select('-__v')
+    .populate([
+      { path: 'thoughts', select:['-__v', '-user'] },
+      { path: 'friends', select:['-__v', '-thoughts']}
+    ])
     .then(dbUserData => {
       if(!dbUserData) {
         res.status(404).json({ message: 'No user found with this id!'});
