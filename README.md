@@ -21,7 +21,7 @@ This webserver provides two databases users and thoughts for a social media appl
 
 Listed below are additional resources for the application:  
 - [GitHub Repository](https://github.com/pjlawler/pat-social)  
-- [Walkthrough Video]()
+- [Walkthrough Video](https://drive.google.com/file/d/1b4l_AvF8eIiX-1Z_Q2o6C8HtZAe2VpMa/view)
 
 
  _ _ _
