@@ -39,11 +39,6 @@ UserSchema.virtual('friendCount').get(function() {
   return this.friends.length;
 });
 
-// UserSchema.statics.getUserName = async function(userId) {
-//   console.log(userId)
-//   return await User.findById(userId).then(dbUserData => dbUserData.username)
-// };
-
 const User = model('User', UserSchema);
 
 module.exports = User;
