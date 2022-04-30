@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const ReactionSchema = require('./Reaction');
-const User = require('./User');
 const { timeSince, format_date } = require('../utils/helpers');
 
 ThoughtSchema = new Schema({
@@ -26,9 +25,8 @@ ThoughtSchema = new Schema({
         default: Date.now,
         get: createdAtVal => timeSince(createdAtVal)
     },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+    username: {
+        type: String,
         required: true
     },
     reactions: [ReactionSchema]
